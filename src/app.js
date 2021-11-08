@@ -1,0 +1,20 @@
+const loggerObj=require('./logger');
+const helperObj=require('./util/helper');
+const formatterObj=require('../validator/formatter');
+const obj=require('lodash');
+loggerObj.logMessage("module system");
+loggerObj.printWelcomeMessage();
+console.log(loggerObj.loggerEndpoint);
+helperObj.getDate();
+helperObj.getMonth();
+helperObj.getBatchInfo();
+formatterObj.trimInput("  Malika Gulati   ");
+formatterObj.changeToLowerCase("MaLIkA GulaTI");
+formatterObj.changeToUpperCase("maLIkA guLaTi");
+let output1=obj.chunk(["Jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"],3);
+console.log(output1);
+const array=[11,13,15,17,19,21,23,25,27,29,31];
+console.log(obj.tail(array));
+console.log(obj.union([10,11,15,20],[10,12,20,25],[10,15,20,50],[10,15,20,70],[10,12,15,25,70]));
+console.log(obj.fromPairs([["horror","The shining"],["Drama","Titanic"],["Thriller","Shutter island"],["fantasy","Pans Labyrinth"]]));
+
