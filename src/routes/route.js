@@ -13,9 +13,13 @@ router.get('/movies/:movieIndex', function(req,res){
     let movies=["Interstellar","Black","Grey","Godzilla","Gulabo Sitabo"];
     let index=req.params.movieIndex;
     let movieAtIndex=movies[index];
-    res.send(movieAtIndex);
-
-})
+    if(index>=movies.length){
+        res.send("invalid index");
+    }
+    else{
+        res.send(movieAtIndex);
+    }
+   })
 router .get('/films',function(req,res){
     const myObj=[{
         "id":1,
@@ -53,9 +57,8 @@ router.get('/films/:filmId', function(req,res){
         "name":"Today"
     }]
     let value=req.params.filmId;
-    let filmlist=movies[value];
-    if(value<movies.length){
-        res.send(filmlist);
+    if(value<=movies.length-1){
+        res.send(movies[value-1]);
     }
     else{
         res.send("invalid id");
