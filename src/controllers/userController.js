@@ -25,8 +25,8 @@ const loginUser=async function(req,res){
     
 }
 const giveUserDetails=async function(req,res){
-    if(req.validToken._id==req.params.userId){
-            let user=await userModel.findOne({_id:req.params.userId, isDeleted:false})
+    
+           let user=await userModel.findOne({_id:req.params.userId, isDeleted:false})
             if(user){
                 res.send({status:true, data:user})
 
@@ -34,14 +34,9 @@ const giveUserDetails=async function(req,res){
             else{
                 res.send({status:false,msg:"user not found"})
             }
-
-        }
-        else{
-            res.send({status:false, msg:"not authorized"})
-        }
     }
 const updateUserDetails=async function(req,res){
-    if(req.validToken._id==req.params.userId){
+    
             let userDetails=await userModel.findOneAndUpdate({_id:req.params.userId},{email:req.body.email},{new:true})
             if(userDetails){
                 res.send({status:true, data:userDetails})
@@ -49,10 +44,7 @@ const updateUserDetails=async function(req,res){
             else{
                 res.send({status:false,msg:"user not found"})
             }
-        }
-        else{
-            res.send({status:false, msg:"not authorized"})
-         }
+        
        }
 
 module.exports.createUser = createUser
