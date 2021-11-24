@@ -25,10 +25,7 @@ const loginUser=async function(req,res){
     
 }
 const giveUserDetails=async function(req,res){
-    let token=req.headers['x-auth-token']
-    let validToken=jwt.verify(token,'radium')
-    if(validToken){
-        if(validToken._id==req.params.userId){
+    if(req.validToken._id==req.params.userId){
             let user=await userModel.findOne({_id:req.params.userId, isDeleted:false})
             if(user){
                 res.send({status:true, data:user})
@@ -42,31 +39,21 @@ const giveUserDetails=async function(req,res){
         else{
             res.send({status:false, msg:"not authorized"})
         }
-
     }
-    else{
-        res.send({status:false, msg:"Invalid token"})
-    }
-}
 const updateUserDetails=async function(req,res){
-    let token=req.headers['x-auth-token']
-    if(!token){
-     res.send({status:false})
-    }
-    else{
-        let validToken=jwt.verify(token,'radium')
-        if(validToken){
-            let userDetails=await userModel.findOneAndUpdate({_id:req.params.userId},{emai:req.body.email},{new:true})
-            res.send({msg:userDetails})
+    if(req.validToken._id==req.params.userId){
+            let userDetails=await userModel.findOneAndUpdate({_id:req.params.userId},{email:req.body.email},{new:true})
+            if(userDetails){
+                res.send({status:true, data:userDetails})
+             }
+            else{
+                res.send({status:false,msg:"user not found"})
+            }
         }
         else{
-           res.send({status:false}) 
-        }
-
-    }
-    
-
-}
+            res.send({status:false, msg:"not authorized"})
+         }
+       }
 
 module.exports.createUser = createUser
 module.exports.loginUser = loginUser
