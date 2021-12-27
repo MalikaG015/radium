@@ -40,6 +40,9 @@ const isValidString = function(value) {
 const isValidNumber = function(value) {
     return !isNaN(Number(value)) && reNumber.test(value)
 }
+const isValidAvailableSizes = function (value) {
+    return ['S','XS','M','X','L','XXL','XL'].indexOf(value)!== -1
+}
 
 const isValidLength = function(value, min, max) {
     const len = String(value).length
@@ -50,7 +53,10 @@ const isInValidRange = function(value, min, max) {
     if(!isValidNumber(value)) return false
     return value >= min && value <= max
 }
+const isValidSymbol = function(value) {
+    return value == "₹"
 
+}
 /*const isValidDate = function(value) {
     const validFormats = [
         "DD/MM/YYYY",
@@ -88,9 +94,10 @@ module.exports = {
     isValidRequestBody,
     isValidObjectId,
     isValidString,
-    //isArray,
+    isValidAvailableSizes,
     isValidNumber,
     isValidLength,
     isInValidRange,
+    isValidSymbol
     //isValidDate,
 };

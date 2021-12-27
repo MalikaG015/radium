@@ -1,5 +1,5 @@
 const {jwt} = require('../utils')
-
+//--------------------ask mentor-----------------------------------------------
 const authMiddleware = async (req, res, next) => {
     try {
         const bearerHeader = req.headers['authorization']

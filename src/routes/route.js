@@ -9,19 +9,26 @@ aws.config.update({
 });
 
 const UserController = require('../controllers/userController')
+const ProductController = require('../controllers/productController')
+//const {userController,productController}=require('../controllers)
 const {authMiddleware} = require('../middlewares')
 
 router.get('/test-me', function (req, res) {
     res.send('My first ever api!')
 });
-//----------user register ---------------------------------------------------------------
+//----------feature-1(user api)-----------------------------------------------
 router.post("/register", UserController.registerUser)
-//router.post("/upload-Profile-picture", UserController.uploadImage)
 router.post("/login",UserController.loginUser)
-
 router.get('/user/:userId/profile', authMiddleware, UserController.getUserProfile)
-router.put('/user/:userId/profile', authMiddleware, UserController.updateUser)
+router.put('/user/:userId/profile', authMiddleware, UserController.updateUser1)
+//----------feature-2(product api)--------------------------------------------
+router.post("/products",ProductController.createProduct)
+router.get("/products",ProductController.getProducts)
+router.get("/products/:productId",ProductController.getProductById)
+router.put("/products/:productId",ProductController.UpdateProductById)
+router.delete("/products/:productId",ProductController.deleteProduct)
 
-//router.get('/user/:userId/profile',  UserController.getUserProfile)updateUser
+
+
 
 module.exports = router;
