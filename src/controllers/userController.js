@@ -1,35 +1,34 @@
 const bcrypt = require("bcrypt");
 const aws = require("aws-sdk");
-const { validator, jwt } = require("../utils");
+const { validator, jwt} = require("../utils");
+
 //const jwt = require('jsonwebtoken')
 const { systemConfig } = require("../configs");
 const userModel = require("../models/userModel");
-//--------------------------------function for uploading profile image------------------------------------
+//----------------------------------------function to upload function---------------------------------
 let uploadFile = async (file) => {
-  return new Promise(function (resolve, reject) {
-    // exactly
-
+  return new Promise(function (resolve, reject) { // exactly 
+    
     // Create S3 service object
     let s3 = new aws.S3({ apiVersion: "2006-03-01" });
     var uploadParams = {
       ACL: "public-read", // this file is publically readable
       Bucket: "classroom-training-bucket", // HERE
-      Key: "group2/project-5/" + file.originalname, // HERE    "group2/project-5/profileImage.png"
-      Body: file.buffer,
+      Key: "project-5/group2/" + file.originalname, // HERE    "pk_newFolder/harry-potter.png" pk_newFolder/harry-potter.png
+      Body: file.buffer, 
     };
 
     // Callback - function provided as the second parameter ( most oftenly)
-    s3.upload(uploadParams, function (err, data) {
+    s3.upload(uploadParams , function (err, data) {
       if (err) {
-        return reject({ error: err });
+        return reject( { "error": err });
       }
-      console.log(data);
+      console.log(data)
       console.log(`File uploaded successfully. ${data.Location}`);
-      return resolve(data.Location); //HERE
+      return resolve(data.Location); //HERE 
     });
   });
 };
-
 
 //---------------------------1st API To Register user ------------------------------------------------
 const registerUser = async function (req, res) {

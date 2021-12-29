@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const aws = require("aws-sdk");
+const aws = require('aws-sdk');
 
 aws.config.update({
   accessKeyId: "AKIAY3L35MCRRMC6253G",  // id
@@ -8,8 +8,10 @@ aws.config.update({
   region: "ap-south-1" // Mumbai region
 });
 
+
 const UserController = require('../controllers/userController')
 const ProductController = require('../controllers/productController')
+const CartController = require('../controllers/cartController')
 //const {userController,productController}=require('../controllers)
 const {authMiddleware} = require('../middlewares')
 
@@ -27,6 +29,10 @@ router.get("/products",ProductController.getProducts)
 router.get("/products/:productId",ProductController.getProductById)
 router.put("/products/:productId",ProductController.UpdateProductById)
 router.delete("/products/:productId",ProductController.deleteProduct)
+//----------feature-3(cart api)------------------------------------------------
+router.post("/users/:userId/cart",CartController.createCart)
+router.put("/users/:userId/cart",CartController.updateCart)
+router.get("/users/:userId/cart",CartController.getCart)
 
 
 
