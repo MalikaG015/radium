@@ -33,6 +33,8 @@ router.delete("/products/:productId",ProductController.deleteProduct)
 router.post("/users/:userId/cart",CartController.createCart)
 router.put("/users/:userId/cart",CartController.updateCart)
 router.get("/users/:userId/cart",CartController.getCart)
+router.delete("/users/:userId/cart",CartController.deleteCart)
+//-----------------------------------------------------------------------------
 
 
 

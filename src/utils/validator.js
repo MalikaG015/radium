@@ -33,9 +33,9 @@ const isValidString = function(value) {
     return Object.prototype.toString.call(value) === "[object String]"
 }
 
-/*const isArray = function(arr) {
+const isArray = function(arr) {
     return Array.isArray(arr)
-}*/
+}
 
 const isValidNumber = function(value) {
     return !isNaN(Number(value)) && reNumber.test(value)
@@ -98,6 +98,7 @@ module.exports = {
     isValidNumber,
     isValidLength,
     isInValidRange,
-    isValidSymbol
+    isValidSymbol,
+    isArray
     //isValidDate,
 };
