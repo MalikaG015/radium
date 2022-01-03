@@ -24,6 +24,10 @@ const isValid = function(value) {
 const isValidRequestBody = function(requestBody) {
     return Object.keys(requestBody).length > 0
 }
+const isValidFiles = function(files) {
+    if(files && files.length>0)
+    return true
+}
 
 const isValidObjectId = function(objectId) {
     return mongoose.Types.ObjectId.isValid(objectId)
@@ -91,6 +95,7 @@ module.exports = {
     validateEmail,
     emailRegex: re,
     isValid,
+    isValidFiles,
     isValidRequestBody,
     isValidObjectId,
     isValidString,

@@ -70,13 +70,13 @@ const registerUser = async function (req, res) {
       return res.status(400).send({ status: false, message: `Mobile should be a valid number` });
 
     }
-    /*if(!validator.isValidNumber(phone)) {
-        return res.status(400).send({status: false, message: 'Phone number should be a valid number'})
-    }*/
     let isPhoneAlredyPresent = await userModel.findOne({ phone: requestBody.phone })
 
     if (isPhoneAlredyPresent) {
       return res.status(400).send({ status: false, message: `Phone Already Present` });
+    }
+    if(validator.isValidFiles(profileImage)){
+      return res.status(400).send({ status: false, message: `Pi is required` })
     }
     if (!validator.isValid(password)) {
       return res.status(400).send({ status: false, message: `Password is required` })
@@ -338,7 +338,7 @@ const updateUser1 = async function (req, res) {
   }
 }
 const updatedUserData = await userModel.findOneAndUpdate({ _id: userId },obj,{new:true})
-          res.status(201).send({ status: true, data: updatedUserData })
+          res.status(200).send({ status: true, data: updatedUserData })
         }
   catch (error) {
       res.status(500).send({ status: false, msg: error.message });
