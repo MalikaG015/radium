@@ -12,7 +12,7 @@ app.use(multer().any()) // HERE
 
 app.use('/', route);
 
-mongoose.connect("mongodb+srv://users-open-to-all:hiPassword123@cluster0.uh35t.mongodb.net/Project5_RR?authSource=admin&replicaSet=atlas-wwe75z-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Beta&retryWrites=true&ssl=true", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://users-open-to-all:hiPassword123@cluster0.uh35t.mongodb.net/Project5_Malika?authSource=admin&replicaSet=atlas-wwe75z-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass%20Beta&retryWrites=true&ssl=true", { useNewUrlParser: true })
     .then(() => console.log('DB connected'))
     .catch(err => console.log(err))
 
